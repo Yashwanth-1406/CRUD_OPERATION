@@ -4,7 +4,6 @@ import com.restart.restart.entity.Registration;
 import com.restart.restart.payload.Registrationdto;
 import com.restart.restart.repository.RegistrationRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,15 +20,15 @@ public class registrationService {
         this.modelMapper = modelMapper;
     }
 
-    public List<Registration>  listofRegistration(){
+    public List<Registration> listofRegistration() {
         List<Registration> reg = registrationRepository.findAll();
-        return  reg;
-   }
+        return reg;
+    }
 
-//    public Registration createRegistration(Registration registration) {
-//       Registration saveentity= registrationRepository.save(registration); //it will return back registration entity
-//       return saveentity;
-//    }
+    public Registration createRegistration(Registration registration) {
+        Registration saveentity = registrationRepository.save(registration); //it will return back registration entity
+        return saveentity;
+    }
 
     public void deleteregistration(long id) {
         registrationRepository.deleteById(id);
@@ -37,52 +36,17 @@ public class registrationService {
     }
 
     public Registration updateRegistrations(Long id, Registration registration) {
-          Registration r=registrationRepository.findById(id).get();
-          r.setName(registration.getName());
-          r.setMobile(registration.getMobile());
-          r.setEmail(registration.getEmail());
-         Registration saved= registrationRepository.save(r);
-         return saved;
+        Registration r = registrationRepository.findById(id).get();
+        r.setName(registration.getName());
+        r.setMobile(registration.getMobile());
+        r.setEmail(registration.getEmail());
+        Registration saved = registrationRepository.save(r);
+        return saved;
     }
 
 
-    public Registrationdto createRegistration(Registrationdto registrationdto) {
-       Registration regg= maptoEntity(registrationdto);
-//        Registration regg=new Registration();
-//      regg.setName(registrationdto.getName());
-//        regg.setEmail(registrationdto.getEmail());
-//        regg.setMobile(registrationdto.getMobile());
-        Registration savedentity=registrationRepository.save(regg);
-//        Registrationdto reg=new Registrationdto();
-//        reg.setName(savedentity.getName());
-//        reg.setEmail(savedentity.getEmail());
-//        reg.setMobile(savedentity.getMobile());
-        Registrationdto registrationdto1
-                =maptodto(savedentity);
-        return registrationdto1;
-    }
-
-
-
-    Registration maptoEntity(Registrationdto registrationdto){
-
-
-       Registration reg= modelMapper.map(registrationdto,Registration.class);
-
-
-//        Registration reg=new Registration ();
-//        reg.setName(registrationdto.getName());
-//        reg.setEmail(registrationdto.getEmail());
-//        reg.setMobile(registrationdto.getMobile());
-
-        return reg;
-    }
-    Registrationdto maptodto(Registration registration){
-      Registrationdto dto=  modelMapper.map(registration,Registrationdto.class);
-//        Registrationdto dto=new Registrationdto();
-//        dto.setName(registration.getName());
-//        dto.setEmail(registration.getEmail());
-//        dto.setMobile(registration.getMobile());
-        return dto;
-    }
 }
+
+
+
+
