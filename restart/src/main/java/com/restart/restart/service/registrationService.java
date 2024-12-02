@@ -70,6 +70,7 @@ public class registrationService {
        Registration reg= modelMapper.map(registrationdto,Registration.class);
 
 
+
 //        Registration reg=new Registration ();
 //        reg.setName(registrationdto.getName());
 //        reg.setEmail(registrationdto.getEmail());
