@@ -4,7 +4,6 @@ import com.restart.restart.entity.Registration;
 import com.restart.restart.payload.Registrationdto;
 import com.restart.restart.repository.RegistrationRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +22,7 @@ public class registrationService {
 
     public List<Registration>  listofRegistration(){
         List<Registration> reg = registrationRepository.findAll();
+
         return  reg;
    }
 
@@ -36,13 +36,16 @@ public class registrationService {
 
     }
 
-    public Registration updateRegistrations(Long id, Registration registration) {
+    public Registrationdto updateRegistrations(Long id, Registrationdto registrationdto) {
+        Registration reg=maptoEntity(registrationdto);
           Registration r=registrationRepository.findById(id).get();
-          r.setName(registration.getName());
-          r.setMobile(registration.getMobile());
-          r.setEmail(registration.getEmail());
+          r.setName(registrationdto.getName());
+          r.setMobile(registrationdto.getMobile());
+          r.setEmail(registrationdto.getEmail());
          Registration saved= registrationRepository.save(r);
-         return saved;
+        Registrationdto registrationdto1
+                =maptodto(saved);
+         return registrationdto1;
     }
 
 

@@ -43,8 +43,8 @@ public class RegistrationController {
         return new ResponseEntity<>("detleted",HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Registration> updateregistration(@PathVariable  Long id, @RequestBody Registration registration){
-       Registration registration1= registrationService.updateRegistrations(id,registration);
+    public ResponseEntity<Registration> updateregistration(@PathVariable  Long id, @RequestBody Registrationdto registrationdto){
+       Registrationdto registration1= registrationService.updateRegistrations(id,registrationdto);
        return new ResponseEntity(registration1,HttpStatus.OK);
     }
 
