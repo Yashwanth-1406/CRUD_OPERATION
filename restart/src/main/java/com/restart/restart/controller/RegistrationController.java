@@ -30,12 +30,13 @@ public class RegistrationController {
     return new ResponseEntity<>(reg, HttpStatus.OK);
 
     }
-  @PostMapping
-   public ResponseEntity<Registration> createRegistration(@RequestBody  Registration registration){
-
-      Registration reg=registrationService.createRegistration(registration);
-       return new ResponseEntity<>(reg,HttpStatus.CREATED);
- }
+//    @PostMapping
+//    public ResponseEntity<Registration> createRegistration(@RequestBody  Registration registration){
+//
+//        Registration reg=registrationService.createRegistration(registration);
+//        return new ResponseEntity<>(reg,HttpStatus.CREATED);
+//
+//    }
     @DeleteMapping
     public ResponseEntity<String> deleteRegistration(@RequestParam long id){
         registrationService.deleteregistration(id);
@@ -47,5 +48,11 @@ public class RegistrationController {
        return new ResponseEntity(registration1,HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<Registrationdto> createRegistration(@RequestBody  Registrationdto registrationdto){
 
+        Registrationdto reg=registrationService.createRegistration(registrationdto);
+        return new ResponseEntity<>(reg,HttpStatus.CREATED);
+
+    }
 }
